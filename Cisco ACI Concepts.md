@@ -1,39 +1,52 @@
 🌐 1. Fabric
 
 Definition: The ACI fabric is the entire network infrastructure (spine, leaf, APIC, endpoints).
+
 Purpose: Provides high-performance, scalable, automated connectivity.
 
 Components:
-* Leaf switches: Connect to endpoints (servers, routers, firewalls)
-* Spine switches: Connect only to leafs (no spine-to-spine or leaf-to-leaf)
-* APICs: Centralized management & policy control
+
+Leaf switches: Connect to endpoints (servers, routers, firewalls)
+
+Spine switches: Connect only to leafs (no spine-to-spine or leaf-to-leaf)
+
+APICs: Centralized management & policy control
 
 🧠 2. APIC (Application Policy Infrastructure Controller)
 
 Definition: The brain of the ACI fabric, controlling policies, configurations, and monitoring.
+
 Cluster: Usually 3 or more nodes for HA.
 
 Functions:
 
-* Policy management
-* Fabric discovery
-* Health monitoring
-* Integration with orchestration tools (vCenter, OpenStack, Kubernetes)
+Policy management
+
+Fabric discovery
+
+Health monitoring
+
+Integration with orchestration tools (vCenter, OpenStack, Kubernetes)
 
 🧩 3. Cluster
 
-Definition: An APIC Cluster refers to a group of Cisco APIC devices that work together to manage and control a Cisco ACI fabric.
+Definition: A group of APIC controllers working together.
+
 Purpose: Redundancy, scalability, fault tolerance.
 
 🏗️ 4. POD (Point of Delivery)
 
 Definition: One independent ACI fabric (spine + leaf + APICs).
+
 Purpose: Scalability, resiliency, multi-location deployments.
 
-## Multi-POD ##
+Multi-POD
 
 Definition: Multiple PODs under one APIC cluster connected via IPN (Inter-POD Network).
+
 Benefits: Centralized management, fault isolation, disaster recovery.
+
+Diagram:
 
           ┌───────────────┐
           │  APIC Cluster │
@@ -50,24 +63,28 @@ Benefits: Centralized management, fault isolation, disaster recovery.
 🧱 5. Bridge Domain (BD)
 
 Definition: Layer 2 forwarding domain, like a VLAN.
+
 Purpose: Connects EPGs; endpoints in same BD communicate at L2.
 
 L3 Capability:
-* Associate BD with VRF
-* Configure Subnet/Gateway
-* Now BD can route traffic (acts like an SVI)
 
-## BD Modes Comparison ##
+Associate BD with VRF
+
+Configure Subnet/Gateway
+
+Now BD can route traffic (acts like an SVI)
+
+BD Modes Comparison:
 
 | Mode  | Subnet | VRF   | Routing | Use Case                   |
 | ----- | ------ | ----- | ------- | -------------------------- |
 | L2 BD | ❌ No   | ❌ No  | ❌ No    | Same-subnet communication  |
 | L3 BD | ✅ Yes  | ✅ Yes | ✅ Yes   | Inter-subnet communication |
 
-
 🧩 6. Endpoint Group (EPG)
 
 Definition: Logical group of endpoints sharing policies.
+
 Purpose: Define traffic rules between groups.
 
 Example: Web EPG ↔ DB EPG
@@ -75,36 +92,45 @@ Example: Web EPG ↔ DB EPG
 🏢 7. Tenant
 
 Definition: Logical container holding policies, BDs, EPGs, VRFs.
+
 Purpose: Segmentation of applications or environments.
 
 Types:
-* Infrastructure Tenant (system)
-* Common Tenant (shared)
-* User-defined Tenant (apps, Prod/Dev/Testing)
+
+Infrastructure Tenant (system)
+
+Common Tenant (shared)
+
+User-defined Tenant (apps, Prod/Dev/Testing)
 
 🌍 8. VRF (Virtual Routing and Forwarding)
 
 Definition: Layer 3 routing domain, isolates traffic.
+
 Purpose: Keeps tenants/applications separate.
 
 🔄 9. Contract
 
 Definition: Policy defining communication rules between EPGs.
+
 Contains: Filters (TCP/80, ICMP), Actions (permit/deny).
 
 ☁️ 10. Orchestration
 
 Definition: Integration with external automation tools (vCenter, OpenStack, Kubernetes).
+
 Purpose: Automates network provisioning for dynamic workloads.
 
 🧭 11. Policy Model
 
 ACI is policy-driven:
+
 Define intent → APIC translates to configurations automatically
 
 ⚙️ 12. Fabric Discovery
 
 Automatic detection of leaf/spine switches via LLDP.
+
 Simplifies topology setup.
 
 📡 13. Access Policy

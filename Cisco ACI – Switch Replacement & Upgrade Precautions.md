@@ -10,6 +10,7 @@ This document describes the precautions and best practices to be followed during
 * Maintain fabric health and application availability
 
 🛑 Pre-Maintenance Window (Pre-MW) Precautions
+
 ✅ APIC Cluster Health
 
 * Ensure all APIC nodes are UP & fully fit

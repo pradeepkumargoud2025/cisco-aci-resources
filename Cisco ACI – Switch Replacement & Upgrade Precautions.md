@@ -2,21 +2,21 @@
 
 This document describes the precautions and best practices to be followed during a Maintenance Window (MW) when replacing a faulty switch and commissioning a new switch in Cisco ACI (APIC).
 
-📌 Objective
+# 📌 Objective
 
 * Safely replace a faulty Leaf / Spine switch
 * Avoid fabric inconsistency or traffic impact
 * Ensure smooth decommission → replacement → commissioning
 * Maintain fabric health and application availability
 
-🛑 Pre-Maintenance Window (Pre-MW) Precautions
+# 🛑 Pre-Maintenance Window (Pre-MW) Precautions
 
 ✅ APIC Cluster Health
 
 * Ensure all APIC nodes are UP & fully fit
 * No APIC should be in failed or disconnected state
 
-# acidiag avread
+## acidiag avread ##
 
 ✅ Fabric Health Check
 
@@ -24,9 +24,9 @@ This document describes the precautions and best practices to be followed during
 * Check for existing critical or major faults
 * Clear old faults before MW if possible
 
-# show fabric membership
+## show fabric membership ##
 
-# show system internal fault info
+## show system internal fault info ##
 
 ✅ Identify Faulty Switch
 
@@ -48,7 +48,7 @@ Capture:
 * vPC details
 * EPG bindings
 
-📊 Impact Analysis
+# 📊 Impact Analysis
 
 Check if the switch is:
  * Dual-homed (vPC)
@@ -57,7 +57,7 @@ Check if the switch is:
 Confirm redundancy availability
 Notify application / business teams if required
 
-⏱️ Maintenance Window Execution (MW)
+# ⏱️ Maintenance Window Execution (MW)
 🔹 Step 1: Graceful Decommission
 
 Never power off directly
@@ -91,7 +91,7 @@ Assign:
 Commission via APIC GUI
 Wait for switch state = Active
 
-🔍 Post-Maintenance Validation
+# 🔍 Post-Maintenance Validation
 
 ✅ Fabric Validation
 show fabric membership
@@ -117,20 +117,25 @@ Validate:
  * Application reachability
 No packet drops or errors
 
-🔄 Rollback Plan (Mandatory)
+# 🔄 Rollback Plan (Mandatory)
 
 * Keep faulty switch isolated but available
 * Backup ready for restore
 * If new switch fails:
    * Decommission new node
+     
    * Reinsert old switch (if hardware allows)
 
-🚫 Common Mistakes to Avoid
+# 🚫 Common Mistakes to Avoid
 
 ❌ Powering off switch without decommission
+
 ❌ Assigning wrong Node ID
+
 ❌ Model or port-count mismatch
+
 ❌ Ignoring pre-existing fabric faults
+
 ❌ Skipping post-MW traffic validation
 
 📝 One-Line Summary (Interview Ready)

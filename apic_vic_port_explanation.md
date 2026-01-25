@@ -40,8 +40,6 @@
 
 ## 4️⃣ Cabling Diagram
 
-![APIC to Leaf Cabling](./An_informative_digital_diagram_illustrates_the_rec.png)
-
 - **Port 1 → Leaf Switch 1 (Active)**
 - **Port 3 → Leaf Switch 2 (Standby)**
 - 🚫 **Ports 2 & 4 remain unused**
